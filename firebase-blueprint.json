@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "users": {
+      "title": "users",
+      "description": "User profile data",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "name", "email", "createdAt"]
+    },
+    "qrcodes": {
+      "title": "qrcodes",
+      "description": "Dynamic QR codes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "destinationUrl": { "type": "string" },
+        "active": { "type": "boolean" },
+        "type": { "type": "string" },
+        "totalScans": { "type": "number" },
+        "lastScannedAt": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "code", "name", "destinationUrl", "active"]
+    },
+    "qrScans": {
+      "title": "qrScans",
+      "description": "Scan telemetry records",
+      "type": "object",
+      "properties": {
+        "qrCodeId": { "type": "string" },
+        "code": { "type": "string" },
+        "scannedAt": { "type": "string" }
+      },
+      "required": ["qrCodeId", "code", "scannedAt"]
+    },
+    "googleBusinesses": {
+      "title": "googleBusinesses",
+      "description": "Saved Google businesses for reviews",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "businessName": { "type": "string" },
+        "address": { "type": "string" },
+        "placeId": { "type": "string" },
+        "reviewUrl": { "type": "string" },
+        "qrCodeId": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "businessName", "reviewUrl"]
+    }
+  }
+}

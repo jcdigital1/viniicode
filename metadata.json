@@ -1,0 +1,6 @@
+{
+  "name": "VINI CODE",
+  "description": "QR Codes inteligentes e dinâmicos com redirecionamento em tempo real, gerador de avaliação Google e estatísticas de leitura.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
