@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import firebaseConfig from '../firebase-applet-config.json';
 
@@ -19,16 +19,8 @@ if (!isFirebaseConfigured && import.meta.env.DEV) {
 // Initialize Firebase SDK
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
+// getAuth automatically handles IndexedDB -> localStorage -> inMemory persistence
 export const auth = getAuth(app);
-
-// Enable local persistence so session remains between refreshes and device sync
-try {
-  setPersistence(auth, browserLocalPersistence).catch((err) => {
-    console.warn('Could not set auth persistence:', err);
-  });
-} catch {
-  // Ignore in environments where window is unavailable
-}
 
 // Connect to specific firestore database if configured
 export const db = firebaseConfig.firestoreDatabaseId && firebaseConfig.firestoreDatabaseId !== '(default)'

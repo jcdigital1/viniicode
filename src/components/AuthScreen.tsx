@@ -61,7 +61,7 @@ export const AuthScreen: React.FC = () => {
       return;
     }
 
-    if (!cleanEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+    if (!cleanEmail || !cleanEmail.includes('@') || !cleanEmail.includes('.') || cleanEmail.length < 5) {
       setErrorMessage('Digite um e-mail válido.');
       return;
     }
@@ -92,7 +92,7 @@ export const AuthScreen: React.FC = () => {
     setSuccessMessage(null);
 
     const cleanEmail = email.trim().toLowerCase();
-    if (!cleanEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+    if (!cleanEmail || !cleanEmail.includes('@') || !cleanEmail.includes('.') || cleanEmail.length < 5) {
       setErrorMessage('Digite um e-mail válido para recuperação.');
       return;
     }

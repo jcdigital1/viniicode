@@ -28,6 +28,10 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const mapAuthErrorToFriendlyMessage = (error: any): string => {
   const code = error?.code || '';
   switch (code) {
+    case 'auth/operation-not-allowed':
+      return 'O provedor de E-mail/Senha não está ativado no Firebase Authentication. Ative o método E-mail/Senha no Firebase Console (Authentication > Sign-in method).';
+    case 'auth/unauthorized-domain':
+      return 'Este domínio não está na lista de domínios autorizados no Firebase Authentication. Adicione o domínio no Firebase Console (Authentication > Settings > Authorized domains).';
     case 'auth/email-already-in-use':
       return 'Este e-mail já possui uma conta.';
     case 'auth/invalid-email':
@@ -49,8 +53,11 @@ export const mapAuthErrorToFriendlyMessage = (error: any): string => {
         if (error.message.includes('network') || error.message.includes('fetch')) {
           return 'Falha de conexão. Tente novamente.';
         }
+        if (error.message.includes('OPERATION_NOT_ALLOWED')) {
+          return 'O provedor de E-mail/Senha não está ativado no Firebase Console (Authentication > Sign-in method).';
+        }
       }
-      return 'Não foi possível realizar esta operação. Tente novamente.';
+      return 'Não foi possível realizar esta operação. Verifique sua conexão ou tente novamente.';
   }
 };
 
